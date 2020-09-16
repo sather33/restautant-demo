@@ -16,7 +16,6 @@ function initState () {
 }
 
 function closeLoading () {
-  console.log('closeLoading')
   const element = document.getElementById('loading')
 
   element.classList.add('hide')
@@ -32,7 +31,6 @@ function renderDom (config, id) {
 
 function renderInitDoms () {
   const chunkRestaurants = getChunkRestaurant()
-  console.log('chunkRestaurants', chunkRestaurants)
 
   chunkRestaurants[0].map(item => {
     const config = createRestaurantConfig(item)
@@ -43,13 +41,11 @@ function renderInitDoms () {
 function renderOptions (data, id) {
   data.map(name => {
     const config = createOptionConfig(name)
-    console.log('config', config)
     renderDom(config, id)
   })
 }
 
 function renderCityOptions () {
   const cities = getCities()
-  console.log('cities', cities)
   renderOptions(cities, 'city-select')
 }
