@@ -21,3 +21,12 @@ function getMainDom () {
 function getPaginationDom () {
   return document.getElementById('pagination')
 }
+
+function getPaginationItemDoms () {
+  return document.getElementsByClassName('pagination-item')
+}
+
+function getPaginationItemDom (page) {
+  const id = 'page-' + page
+  return document.getElementById(id)
+}

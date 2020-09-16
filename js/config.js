@@ -53,9 +53,12 @@ function createOptionConfig (name) {
 }
 
 function createPaginationConfig (page) {
+  const className = page - 1 === currentPage ? 'pagination-item is-active' : 'pagination-item'
+
   return createElement('div', {
     attrs: {
-      class: 'pagination-item',
+      id: 'page-' + page,
+      class: className,
       'data-page': page
     },
     children: [`${page}`]

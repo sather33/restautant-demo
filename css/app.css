@@ -2,7 +2,10 @@
   --grey: rgb(142, 148, 175);
   --grey-dark: rgb(92, 99, 104);
   --grey-light: rgb(213, 213, 213);
+  --primary: rgb(23, 147, 201);
+  --white: rgb(256, 256, 256);
   --gap: 12px;
+  --slow: .3s;
   --small-gap: 6px;
   --box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
 }
@@ -89,6 +92,13 @@ select:not(:last-child) {
   color: var(--grey);
   margin: var(--small-gap);
   background-color: var(--grey-light);
+  cursor: pointer;
+  transition: var(--slow);
+}
+
+.pagination-item:hover, .pagination-item.is-active {
+  color: var(--white);
+  background-color: var(--primary);
 }
 
 section {

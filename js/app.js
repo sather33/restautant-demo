@@ -141,6 +141,7 @@ function handleSelectDistrict ({ value }) {
 
 function changePage (page) {
   currentPage = page - 1
+  window.scrollTo(0, 0);
   renderRestaurants()
 }
 
