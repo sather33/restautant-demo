@@ -1,5 +1,12 @@
 :root {
   --grey: rgb(142, 148, 175);
+  --grey-light: rgb(213, 213, 213);
+  --gap: 12px;
+  --small-gap: 6px;
+}
+
+body {
+  margin: 0;
 }
 
 .title {
@@ -51,7 +58,26 @@ select {
   left: 0;
   right: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-color: rgba(55, 55, 55, .5);
+}
+
+#pagination {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--gap) * -1);
+  padding-left: var(--small-gap);
+  padding-right: var(--small-gap);
+}
+
+.pagination-item {
+  padding: 6px 12px;
+  color: var(--grey);
+  margin: var(--small-gap);
+  background-color: var(--grey-light);
+}
+
+section {
+  padding: var(--gap);
 }
