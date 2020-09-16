@@ -19,3 +19,7 @@ function getChunkRestaurant () {
 function getCities () {
   return getState('cities')
 }
+
+function getPage () {
+  return parseInt(getParameterByName('page'), 10)
+}

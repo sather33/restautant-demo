@@ -1,8 +1,8 @@
 window.onload = async function() {
   console.log("window loaded")
   await initState();
-  await renderInitDoms()
   await renderCityOptions()
+  await renderRestaurants()
   closeLoading()
 };
 
@@ -30,13 +30,53 @@ function renderDom (config, id) {
   mount(render(config), id)
 }
 
-function renderInitDoms () {
-  const chunkRestaurants = getChunkRestaurant()
+function cleanMainDom () {
+  getMainDom().innerHTML = ''
+}
 
-  chunkRestaurants[0].map(item => {
+function createRestaurantDom (list) {
+  cleanMainDom()
+  const chunkList = chunk(list, 10)
+  const page = getPage() || 0
+  const currentPage = chunkList.length > page ? page : 0
+
+  chunkList[currentPage].map(item => {
     const config = createRestaurantConfig(item)
     renderDom(config, 'main')
   })
+}
+
+function initRestaurant () {
+  const restaurants = getRestaurant()
+  createRestaurantDom(restaurants)
+}
+
+function selectCityRestaurant (city) {
+  const restaurantsGroupByCity = getRestaurantsGroupByCity()
+  const restaurant = restaurantsGroupByCity[city]
+  createRestaurantDom(restaurant)
+}
+
+function selectDistrictRestaurant (city, district) {
+  const restaurantsGroupByCity = getRestaurantsGroupByCity()
+  const restaurants = restaurantsGroupByCity[city]
+  const filteredList = restaurants.filter(restaurant => restaurant.Town === district)
+  createRestaurantDom(filteredList)
+}
+
+function renderRestaurants () {
+  const city = selectedCity()
+  const district = selectedDistrict()
+
+  if (!city && !district) {
+    return initRestaurant()
+  }
+
+  if (district) {
+    return selectDistrictRestaurant(city, district)
+  }
+
+  return selectCityRestaurant(city)
 }
 
 function renderOptions (data, id) {
@@ -67,8 +107,13 @@ function handleSelectCity ({ value }) {
   resetDistrictOptions()
 
   if (!district) {
-    return 
+    return renderRestaurants()
   }
 
   renderDistrictOptions(district)
+  renderRestaurants()
+}
+
+function handleSelectDistrict ({ value }) {
+  renderRestaurants()
 }
