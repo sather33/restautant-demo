@@ -7,9 +7,10 @@ window.onload = async function() {
 };
 
 function initState () {
-  loadDataToStorage();
+  loadDataToStorage()
   loadDataGroupByCity()
   loadChunkRestaurants()
+  loadCities()
   
   const data = getRestaurant();
   console.log('initState', data)
@@ -47,5 +48,5 @@ function renderOptions (data, id) {
 
 function renderCityOptions () {
   const cities = getCities()
-  renderOptions(cities, 'city-select')
+  renderOptions(Object.keys(cities), 'city-select')
 }

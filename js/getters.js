@@ -17,5 +17,5 @@ function getChunkRestaurant () {
 }
 
 function getCities () {
-  return Object.keys(getRestaurantsGroupByCity())
+  return getState('cities')
 }

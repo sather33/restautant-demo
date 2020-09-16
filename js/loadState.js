@@ -20,3 +20,17 @@ function loadChunkRestaurants () {
 
   setState('chunkRestaurants', chunkedRestaurants)
 }
+
+function loadCities () {
+  const restaurantsGroupByCity = getRestaurantsGroupByCity()
+  const cities = Object.keys(restaurantsGroupByCity).reduce((carray, city) => {
+    const district = restaurantsGroupByCity[city]
+    const groupByDistrict = groupBy(district, 'Town')
+    const districtNames = Object.keys(groupByDistrict)
+
+    carray[city] = districtNames
+    return carray
+  }, {})
+
+  setState('cities', cities)
+}
