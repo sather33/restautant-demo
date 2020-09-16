@@ -5,21 +5,53 @@ window.onload = async function() {
   closeLoading()
 };
 
-function loadDataToStorage() {
-  console.log('load data')
-  sessionStorage.setItem('restaurants', JSON.stringify(data))
+function setState (key, data) {
+  sessionStorage.setItem(key, JSON.stringify(data))
 }
 
-function getState() {
-  const state = sessionStorage.getItem('restaurants');
+function loadDataToStorage() {
+  console.log('load data')
+  setState('restaurants', data)
+}
+
+function loadDataGroupByCity () {
+  const data = getRestaurant();
+  const dataGroupByCity = groupBy(data, 'City')
+
+  setState('restaurantsGroupByCity', dataGroupByCity)
+}
+
+function loadChunkRestaurants () {
+  const data = getRestaurant();
+  const chunkedRestaurants = chunk(data, 10)
+
+  setState('chunkRestaurants', chunkedRestaurants)
+}
+
+function getState (key) {
+  const state = sessionStorage.getItem(key);
 
   return JSON.parse(state)
 }
 
+function getRestaurant () {
+  return getState('restaurants')
+}
+
+function getRestaurantsGroupByCity () {
+  return getState('restaurantsGroupByCity')
+}
+
+function getChunkRestaurant () {
+  return getState('chunkRestaurants')
+}
+
 function initState () {
   loadDataToStorage();
-  const data = getState();
-
+  loadDataGroupByCity()
+  loadChunkRestaurants()
+  
+  const data = getRestaurant();
   console.log('initState', data)
 }
 
@@ -66,18 +98,16 @@ function createRestaurantConfig (restaurant) {
   }
 }
 
-function renderDom (config) {
+function renderDom (item) {
+  const config = createRestaurantConfig(item)
   const dom = createElement('div', config);
   
   mount(render(dom), 'main')
 }
 
 function renderInitDoms () {
-  const data = getState()
+  const chunkRestaurants = getChunkRestaurant()
+  console.log('chunkRestaurants', chunkRestaurants)
 
-  for (let index = 0; index < 10; index++) {
-    const config = createRestaurantConfig(data[index])
-
-    renderDom(config)
-  }
+  chunkRestaurants[0].map(item => renderDom(item))
 }
