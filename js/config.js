@@ -7,10 +7,18 @@ function createRestaurantConfig (restaurant) {
       class: 'card'
     },
     children: [
-      createElement('img', {
+      createElement('div', {
         attrs: {
-          src: PicURL,
+          class: 'image-block'
         },
+        children: [
+          createElement('img', {
+            attrs: {
+              src: PicURL,
+              class: 'image',
+            },
+          }),
+        ]
       }),
       createElement('div', {
         attrs: {
