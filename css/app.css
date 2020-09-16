@@ -1,0 +1,41 @@
+:root {
+  --grey: rgb(142, 148, 175);
+}
+
+.title {
+  font-size: 30px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.control-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+select:not(:last-child) {
+  margin-right: 16px;
+}
+
+select {
+  height: 30px;
+  border-radius: 2px;
+  background-color: rgb(205, 205, 205);
+}
+
+.selects, .switch-type {
+  display: flex;
+}
+
+.container {
+  margin: auto;
+  max-width: 960px;
+}
+
+.t-16 {
+  font-size: 16px;
+}
+
+.color-grey {
+  color: var(--grey);
+}
