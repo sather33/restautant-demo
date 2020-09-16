@@ -17,3 +17,7 @@ function selectedDistrict () {
 function getMainDom () {
   return document.getElementById('main')
 }
+
+function getPaginationDom () {
+  return document.getElementById('pagination')
+}

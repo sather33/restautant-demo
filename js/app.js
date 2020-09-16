@@ -1,3 +1,5 @@
+var currentPage = 0
+
 window.onload = async function() {
   console.log("window loaded")
   await initState();
@@ -30,15 +32,34 @@ function renderDom (config, id) {
   mount(render(config), id)
 }
 
+function cleanChildren (element) {
+  element.innerHTML = ''
+}
+
 function cleanMainDom () {
-  getMainDom().innerHTML = ''
+  cleanChildren(getMainDom())
+}
+
+async function renderPagination (page) {
+  const element = getPaginationDom()
+  cleanChildren(element)
+
+  for (let index = 1; index <= page; index++) {
+    const config = createPaginationConfig(index)
+    await renderDom(config, 'pagination')
+  }
+
+  listenPagination()
 }
 
 function createRestaurantDom (list) {
   cleanMainDom()
+
   const chunkList = chunk(list, 10)
-  const page = getPage() - 1 || 0
-  const currentPage = chunkList.length > page ? page : 0
+  renderPagination(chunkList.length);
+
+  // const page = getPage() - 1 || 0
+  // const currentPage = chunkList.length > page ? page : 0
 
   chunkList[currentPage].map(item => {
     const config = createRestaurantConfig(item)
@@ -116,4 +137,21 @@ function handleSelectCity ({ value }) {
 
 function handleSelectDistrict ({ value }) {
   renderRestaurants()
+}
+
+function changePage (page) {
+  currentPage = page - 1
+  renderRestaurants()
+}
+
+function listenPagination () {
+  const elements = document.getElementsByClassName('pagination-item')
+
+  for (let index = 0; index < elements.length; index++) {
+    const element = elements[index];
+    const { page } = element.dataset
+    element.addEventListener('click', function () {
+      changePage(page)
+    })
+  }
 }

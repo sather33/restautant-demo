@@ -4,6 +4,7 @@ function createRestaurantConfig (restaurant) {
   return createElement('div', {
     attrs: {
       id: ID,
+      class: 'card'
     },
     children: [
       createElement('img', {
@@ -40,5 +41,15 @@ function createOptionConfig (name) {
       value: name
     },
     children: [name]
+  })
+}
+
+function createPaginationConfig (page) {
+  return createElement('div', {
+    attrs: {
+      class: 'pagination-item',
+      'data-page': page
+    },
+    children: [`${page}`]
   })
 }
