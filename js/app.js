@@ -2,49 +2,9 @@ window.onload = async function() {
   console.log("window loaded")
   await initState();
   await renderInitDoms()
+  await renderCityOptions()
   closeLoading()
 };
-
-function setState (key, data) {
-  sessionStorage.setItem(key, JSON.stringify(data))
-}
-
-function loadDataToStorage() {
-  console.log('load data')
-  setState('restaurants', data)
-}
-
-function loadDataGroupByCity () {
-  const data = getRestaurant();
-  const dataGroupByCity = groupBy(data, 'City')
-
-  setState('restaurantsGroupByCity', dataGroupByCity)
-}
-
-function loadChunkRestaurants () {
-  const data = getRestaurant();
-  const chunkedRestaurants = chunk(data, 10)
-
-  setState('chunkRestaurants', chunkedRestaurants)
-}
-
-function getState (key) {
-  const state = sessionStorage.getItem(key);
-
-  return JSON.parse(state)
-}
-
-function getRestaurant () {
-  return getState('restaurants')
-}
-
-function getRestaurantsGroupByCity () {
-  return getState('restaurantsGroupByCity')
-}
-
-function getChunkRestaurant () {
-  return getState('chunkRestaurants')
-}
 
 function initState () {
   loadDataToStorage();
@@ -62,52 +22,34 @@ function closeLoading () {
   element.classList.add('hide')
 }
 
-function createRestaurantConfig (restaurant) {
-  const { ID, PicURL, Name, HostWords } = restaurant
-
-  return {
-    attrs: {
-      id: ID,
-    },
-    children: [
-      createElement('img', {
-        attrs: {
-          src: PicURL,
-        },
-      }),
-      createElement('div', {
-        attrs: {
-          class: 'text-block'
-        },
-        children: [
-          createElement('div', {
-            attrs: {
-              class: 'item-title'
-            },
-            children: [Name]
-          }),
-          createElement('div', {
-            attrs: {
-              class: 'item-content'
-            },
-            children: [HostWords]
-          }),
-        ]
-      })
-    ],
+function renderDom (config, id) {
+  if (!id) {
+    return
   }
-}
-
-function renderDom (item) {
-  const config = createRestaurantConfig(item)
-  const dom = createElement('div', config);
   
-  mount(render(dom), 'main')
+  mount(render(config), id)
 }
 
 function renderInitDoms () {
   const chunkRestaurants = getChunkRestaurant()
   console.log('chunkRestaurants', chunkRestaurants)
 
-  chunkRestaurants[0].map(item => renderDom(item))
+  chunkRestaurants[0].map(item => {
+    const config = createRestaurantConfig(item)
+    renderDom(config, 'main')
+  })
+}
+
+function renderOptions (data, id) {
+  data.map(name => {
+    const config = createOptionConfig(name)
+    console.log('config', config)
+    renderDom(config, id)
+  })
+}
+
+function renderCityOptions () {
+  const cities = getCities()
+  console.log('cities', cities)
+  renderOptions(cities, 'city-select')
 }
