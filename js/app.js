@@ -1,6 +1,7 @@
-window.onload = function() {
+window.onload = async function() {
   console.log("window loaded")
-  initState();
+  await initState();
+  closeLoading()
 };
 
 function loadDataToStorage() {
@@ -20,4 +21,11 @@ function initState () {
   const data = getState();
 
   console.log('initState', data)
+}
+
+function closeLoading () {
+  console.log('closeLoading')
+  const element = document.getElementById('loading')
+
+  element.classList.add('hide')
 }
