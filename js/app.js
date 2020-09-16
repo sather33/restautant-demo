@@ -50,3 +50,25 @@ function renderCityOptions () {
   const cities = getCities()
   renderOptions(Object.keys(cities), 'city-select')
 }
+
+function resetDistrictOptions () {
+  const element = getDistrictSelectDom()
+  element.innerHTML = '<option value="">請選擇鄉鎮區...</option>'
+}
+
+function renderDistrictOptions (district) {
+  renderOptions(district, 'district-select')
+}
+
+function handleSelectCity ({ value }) {
+  const cities = getCities()
+  const district = cities[value]
+
+  resetDistrictOptions()
+
+  if (!district) {
+    return 
+  }
+
+  renderDistrictOptions(district)
+}
