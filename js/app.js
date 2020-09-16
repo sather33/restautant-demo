@@ -37,7 +37,7 @@ function cleanMainDom () {
 function createRestaurantDom (list) {
   cleanMainDom()
   const chunkList = chunk(list, 10)
-  const page = getPage() || 0
+  const page = getPage() - 1 || 0
   const currentPage = chunkList.length > page ? page : 0
 
   chunkList[currentPage].map(item => {
