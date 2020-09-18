@@ -179,6 +179,7 @@ section {
 
 .pagination-info {
   flex: 0 0 auto;
+  margin-right: 10px;
 }
 
 .icon {
@@ -300,7 +301,7 @@ section {
 
   .text-block {
     padding-right: 8px;
-    padding-left: 40px;
+    padding-left: 32px;
   }
 
   .item-title {
