@@ -16,6 +16,24 @@ body {
   padding-bottom: 30px;
 }
 
+#wrapper {
+  display: flex;
+}
+
+#ad-block {
+  flex: 0 0 auto;
+  margin-left: 24px;
+}
+
+.ad {
+  position: sticky;
+  top: 0;
+}
+
+.ad:not(:last-child) {
+  margin-bottom: 12px;
+}
+
 .pagination-label {
   margin-right: 8px;
 }
@@ -39,7 +57,7 @@ body {
 
 select {
   height: 30px;
-  width: 140px;
+  width: 100%;
   border: none;
   border-radius: 2px;
   background-color: rgb(205, 205, 205);
@@ -61,7 +79,7 @@ select:not(:last-child) {
 
 .container {
   margin: auto;
-  max-width: 960px;
+  max-width: 90vw;
 }
 
 .t-16 {
@@ -158,6 +176,10 @@ section {
   color: var(--grey-dark);
 }
 
+.pagination-info {
+  flex: 0 0 auto;
+}
+
 @media only screen and (max-width: 767px) {
   .is-desktop-only {
     display: none !important;
@@ -206,10 +228,19 @@ section {
     font-size: 30px;
   }
 
+  .container {
+    width: 85vw;
+    max-width: 1152px;
+  }
+
   .control-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  select {
+    width: 140px;
   }
 
   select:not(:last-child) {
