@@ -5,6 +5,7 @@
   --primary: rgb(23, 147, 201);
   --primary-light: rgb(22, 147, 195);
   --white: rgb(256, 256, 256);
+  --dark: rgb(0, 0, 0);
   --gap: 12px;
   --slow: .3s;
   --small-gap: 6px;
@@ -178,6 +179,33 @@ section {
 
 .pagination-info {
   flex: 0 0 auto;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.icon:not(:last-child) {
+  margin-right: 6px;
+}
+
+.icon:hover .fill, .icon.is-active .fill {
+  fill: var(--dark);
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon .fill {
+  transition: fill .3s;
+  fill: var(--grey);
 }
 
 @media only screen and (max-width: 767px) {

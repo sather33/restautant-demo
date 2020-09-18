@@ -1,10 +1,12 @@
 var currentPage = 1
+var theme = 'list'
 
 window.onload = async function() {
   console.log("window loaded")
   await initState();
   await renderCityOptions()
   await renderRestaurants()
+  await checkTheme()
   closeLoading()
 };
 
@@ -16,6 +18,26 @@ function initState () {
   
   const data = getRestaurant();
   console.log('initState', data)
+}
+
+var themeDoms = {
+  list: getListIconDom,
+  table: getTableIconDom,
+  image: getImageIconDom,
+}
+
+function cleanIconsClass () {
+  const elements = getIconsDom()
+
+  for (let index = 0; index < elements.length; index++) {
+    const element = elements[index];
+    element.classList.remove('is-active') 
+  }
+}
+
+function checkTheme () {
+  cleanIconsClass()
+  themeDoms[theme]().classList.add('is-active')
 }
 
 function closeLoading () {
@@ -176,4 +198,20 @@ function listenPagination () {
       changePage(parseInt(page, 10))
     })
   }
+}
+
+function updateTheme (value) {
+  theme = value
+}
+
+function switchTheme (value) {
+  updateTheme(value)
+
+  const element = getMainDom()
+  element.classList.remove('is-theme-table')
+  element.classList.remove('is-theme-image')
+  element.classList.remove('is-theme-list')
+  element.classList.add('is-theme-' + value)
+
+  checkTheme()
 }

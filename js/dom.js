@@ -38,3 +38,19 @@ function getPaginationItemDom (page) {
   const id = 'page-' + page
   return document.getElementById(id)
 }
+
+function getListIconDom () {
+  return document.getElementById('list-icon')
+}
+
+function getTableIconDom () {
+  return document.getElementById('table-icon')
+}
+
+function getImageIconDom () {
+  return document.getElementById('image-icon')
+}
+
+function getIconsDom () {
+  return document.getElementsByClassName('icon')
+}
