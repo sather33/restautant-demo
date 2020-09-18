@@ -22,6 +22,14 @@ function getPaginationDom () {
   return document.getElementById('pagination')
 }
 
+function getCurrentPageDom () {
+  return document.getElementById('current-page')
+}
+
+function getTotalPageDom () {
+  return document.getElementById('total-page')
+}
+
 function getPaginationItemDoms () {
   return document.getElementsByClassName('pagination-item')
 }

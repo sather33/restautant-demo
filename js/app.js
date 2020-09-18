@@ -1,4 +1,4 @@
-var currentPage = 0
+var currentPage = 1
 
 window.onload = async function() {
   console.log("window loaded")
@@ -52,16 +52,37 @@ async function renderPagination (page) {
   listenPagination()
 }
 
+function updateCurrentPage () {
+  const element = getCurrentPageDom()
+  element.innerHTML = currentPage
+}
+
+function updateTotalPage (page) {
+  const element = getTotalPageDom()
+  element.innerHTML = page
+}
+
+function handleCorrectCurrentPage (page) {
+  if (page < currentPage) {
+    currentPage = 1
+    return
+  }
+
+  return page
+}
+
 function createRestaurantDom (list) {
   cleanMainDom()
 
   const chunkList = chunk(list, 10)
-  renderPagination(chunkList.length);
+  const totalPage = chunkList.length
 
-  // const page = getPage() - 1 || 0
-  // const currentPage = chunkList.length > page ? page : 0
+  handleCorrectCurrentPage(totalPage)
+  updateCurrentPage()
+  updateTotalPage(totalPage)
+  renderPagination(totalPage);
 
-  chunkList[currentPage].map(item => {
+  chunkList[currentPage - 1].map(item => {
     const config = createRestaurantConfig(item)
     renderDom(config, 'main')
   })
@@ -140,7 +161,7 @@ function handleSelectDistrict ({ value }) {
 }
 
 function changePage (page) {
-  currentPage = page - 1
+  currentPage = page
   window.scrollTo(0, 0);
   renderRestaurants()
 }
@@ -152,7 +173,7 @@ function listenPagination () {
     const element = elements[index];
     const { page } = element.dataset
     element.addEventListener('click', function () {
-      changePage(page)
+      changePage(parseInt(page, 10))
     })
   }
 }
