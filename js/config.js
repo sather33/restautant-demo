@@ -1,5 +1,27 @@
+function tagBlock (className, { City, Town }) {
+  return createElement('div', {
+    attrs: {
+      class: 'tag-block ' + className
+    },
+    children: [
+      createElement('div', {
+        attrs: {
+          class: 'city-tag'
+        },
+        children: [City]
+      }),
+      createElement('div', {
+        attrs: {
+          class: 'town-tag'
+        },
+        children: [Town]
+      })
+    ]
+  })
+}
+
 function createRestaurantConfig (restaurant) {
-  const { ID, PicURL, Name, HostWords } = restaurant
+  const { ID, PicURL, Name, HostWords, City, Town } = restaurant
 
   return createElement('div', {
     attrs: {
@@ -7,6 +29,7 @@ function createRestaurantConfig (restaurant) {
       class: 'card'
     },
     children: [
+      tagBlock('is-desktop-only', { City, Town }),
       createElement('div', {
         attrs: {
           class: 'image-block'
@@ -31,6 +54,7 @@ function createRestaurantConfig (restaurant) {
             },
             children: [Name]
           }),
+          tagBlock('is-touch-only', { City, Town }),
           createElement('div', {
             attrs: {
               class: 'item-content'

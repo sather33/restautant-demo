@@ -3,6 +3,7 @@
   --grey-dark: rgb(92, 99, 104);
   --grey-light: rgb(213, 213, 213);
   --primary: rgb(23, 147, 201);
+  --primary-light: rgb(22, 147, 195);
   --white: rgb(256, 256, 256);
   --gap: 12px;
   --slow: .3s;
@@ -38,6 +39,7 @@ body {
 
 select {
   height: 30px;
+  width: 140px;
   border: none;
   border-radius: 2px;
   background-color: rgb(205, 205, 205);
@@ -119,6 +121,8 @@ section {
 }
 
 .card {
+  display: flex;
+  position: relative;
   padding: var(--gap);
   box-shadow: var(--box-shadow);
 }
@@ -140,7 +144,25 @@ section {
   color: var(--grey-dark);
 }
 
+.city-tag {
+  padding: 2px 8px;
+  color: var(--white);
+  background-color: var(--primary-light);
+}
+
+.tag-block {
+  display: flex;
+}
+
+.town-tag {
+  color: var(--grey-dark);
+}
+
 @media only screen and (max-width: 767px) {
+  .is-desktop-only {
+    display: none !important;
+  }
+
   body {
     padding-left: var(--gap);
     padding-right: var(--gap);
@@ -160,9 +182,26 @@ section {
     margin-top: 6px;
     font-size: 14px;
   }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .tag-block {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+
+  .city-tag {
+    margin-right: 8px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
+  .is-touch-only {
+    display: none !important;
+  }
+
   .title {
     font-size: 30px;
   }
@@ -182,7 +221,6 @@ section {
   }
 
   .card {
-    display: flex;
     padding: 18px;
   }
 
@@ -213,5 +251,20 @@ section {
   .item-content {
     margin-top: 24px;
     line-height: 1.6;
+  }
+
+  .tag-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    align-items: flex-end;
+    flex-direction: column;
+    transform: translateX(-100%);
+  }
+
+  .town-tag {
+    padding-top: 6px;
+    padding-right: 6px;
+    writing-mode: vertical-rl;
   }
 }
