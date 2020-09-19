@@ -191,6 +191,7 @@ section {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  max-height: 75px;
   color: var(--grey-dark);
 }
 
@@ -351,6 +352,7 @@ section {
   color: var(--white);
   margin-top: 6px;
   font-size: 12px;
+  max-height: 38px;
 }
 
 @media only screen and (max-width: 767px) {
