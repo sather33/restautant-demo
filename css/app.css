@@ -239,7 +239,9 @@ section {
 
 .image-block {
   position: relative;
+  display: flex;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .image-block img {
@@ -261,7 +263,33 @@ section {
 }
 
 .image-card {
+  position: relative;
   height: 140px;
+}
+
+.image-card .info-block {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 3;
+}
+
+.info-block .town-tag, .info-block .item-title {
+  color: var(--white);
+}
+
+.info-block .item-title {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.info-block .tag-block {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.info-block .tag-block .f-text {
+  font-size: 14px;
 }
 
 .image-card .image-block {
@@ -271,6 +299,10 @@ section {
 .image-card .image-block img {
   height: 100%;
   object-fit: cover;
+}
+
+.city-tag {
+  margin-right: 8px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -305,10 +337,6 @@ section {
   .tag-block {
     margin-top: 8px;
     margin-bottom: 10px;
-  }
-
-  .city-tag {
-    margin-right: 8px;
   }
 }
 
@@ -349,7 +377,6 @@ section {
   }
 
   .image-block {
-    display: flex;
     flex: 0 0 auto;
     width: 240px;
     height: 150px;
@@ -377,7 +404,7 @@ section {
     line-height: 1.6;
   }
 
-  .tag-block {
+  .card .tag-block {
     position: absolute;
     left: 0;
     top: 0;
@@ -386,10 +413,14 @@ section {
     transform: translateX(-100%);
   }
 
-  .town-tag {
+  .card .tag-block .town-tag {
     padding-top: 6px;
     padding-right: 6px;
     writing-mode: vertical-rl;
+  }
+
+  .card .tag-block .city-tag {
+    margin-right: 0;
   }
 
   .image-card .image-block{

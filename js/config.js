@@ -1,4 +1,4 @@
-function tagBlock (className, { City, Town }) {
+function tagBlock ({ City, Town }, className = '') {
   return createElement('div', {
     attrs: {
       class: 'tag-block ' + className
@@ -6,13 +6,13 @@ function tagBlock (className, { City, Town }) {
     children: [
       createElement('div', {
         attrs: {
-          class: 'city-tag'
+          class: 'city-tag f-text'
         },
         children: [City]
       }),
       createElement('div', {
         attrs: {
-          class: 'town-tag'
+          class: 'town-tag f-text'
         },
         children: [Town]
       })
@@ -58,7 +58,7 @@ function listThemeConfig (restaurant) {
       ...wrapper.attrs
     },
     children: [
-      tagBlock('is-desktop-only', { City, Town }),
+      tagBlock({ City, Town }, 'is-desktop-only'),
       createElement('div', {
         attrs: {
           class: 'image-block'
@@ -88,7 +88,7 @@ function listThemeConfig (restaurant) {
             },
             children: [Name]
           }),
-          tagBlock('is-touch-only', { City, Town }),
+          tagBlock({ City, Town }, 'is-touch-only'),
           createElement('div', {
             attrs: {
               class: 'item-content f-text'
@@ -111,16 +111,6 @@ function tableThemeConfig (restaurant) {
   })
 }
 
-function addRowItems () {
-  const element = getMainDom()
-  element.classList.add('row-items')
-}
-
-function cleanRowItems () {
-  const element = getMainDom()
-  element.classList.remove('row-items')
-}
-
 function imageThemeConfig (restaurant) {
   const { ID, City, Town, PicURL, Name, HostWords } = restaurant
 
@@ -134,6 +124,20 @@ function imageThemeConfig (restaurant) {
       ...wrapper.attrs
     },
     children: [
+      createElement('div', {
+        attrs: {
+          class: 'info-block'
+        },
+        children: [
+          tagBlock({ City, Town }),
+          createElement('div', {
+            attrs: {
+              class: 'item-title f-text'
+            },
+            children: [Name]
+          }),
+        ]
+      }),
       createElement('div', {
         attrs: {
           class: 'image-block'
@@ -180,4 +184,14 @@ function createPaginationConfig (page) {
     },
     children: [`${page}`]
   })
+}
+
+function addRowItems () {
+  const element = getMainDom()
+  element.classList.add('row-items')
+}
+
+function cleanRowItems () {
+  const element = getMainDom()
+  element.classList.remove('row-items')
 }
