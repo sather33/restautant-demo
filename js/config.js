@@ -52,7 +52,7 @@ function listThemeConfig (restaurant) {
   
   return createElement(wrapper.tag, {
     attrs: {
-      id: ID,
+      id: restaurant.ID,
       class: 'card',
       ...wrapper.attrs
     },
@@ -135,7 +135,7 @@ function imageThemeConfig (restaurant) {
 
   return createElement(wrapper.tag, {
     attrs: {
-      id: ID,
+      id: restaurant.ID,
       class: 'image-card row-item is-6',
       ...wrapper.attrs
     },
