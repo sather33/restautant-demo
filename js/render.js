@@ -10,7 +10,7 @@ function renderElem (element) {
   }
 
   if (children) {
-    children.map(child => {
+    children.map(function(child) {
       elem.appendChild(render(child));
     })
   }
@@ -25,7 +25,7 @@ function render (vNode) {
   return renderElem(vNode);
 };
 
-function mount (element, id) {
+var mount = function (element, id) {
   const targetNode = document.getElementById(id)
   if (!targetNode) {
     return
