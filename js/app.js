@@ -1,11 +1,11 @@
 var currentPage = 1
 var theme = 'list'
 
-window.onload = async function() {
-  await initState();
-  await renderCityOptions()
-  await renderRestaurants()
-  await checkTheme()
+window.onload = function() {
+  initState();
+  renderCityOptions()
+  renderRestaurants()
+  checkTheme()
   closeLoading()
 };
 
@@ -68,13 +68,13 @@ function addScrollToMain () {
   element.classList.add('is-scroll')
 }
 
-async function renderPagination (page) {
+function renderPagination (page) {
   const element = getPaginationDom()
   cleanChildren(element)
 
   for (let index = 1; index <= page; index++) {
     const config = createPaginationConfig(index)
-    await renderDom(config, 'pagination')
+    renderDom(config, 'pagination')
   }
 
   listenPagination()
