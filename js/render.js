@@ -10,9 +10,9 @@ function renderElem (element) {
   }
 
   if (children) {
-    for (const child of children) {
+    children.map(child => {
       elem.appendChild(render(child));
-    }
+    })
   }
 
   return elem;
