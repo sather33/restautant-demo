@@ -54,7 +54,8 @@ function listThemeConfig (restaurant) {
     id: restaurant.ID,
     class: 'card',
   }
-  const attrs = Object.assign(defaultAttrs, restaurant.attrs)
+
+  const attrs = Object.assign(defaultAttrs, wrapper.attrs)
   
   return createElement(wrapper.tag, {
     attrs: attrs,
@@ -140,7 +141,7 @@ function imageThemeConfig (restaurant) {
     class: 'image-card row-item is-6',
   }
 
-  const attrs = Object.assign(defaultAttrs, restaurant.attrs)
+  const attrs = Object.assign(defaultAttrs, wrapper.attrs)
 
   return createElement(wrapper.tag, {
     attrs: attrs,
