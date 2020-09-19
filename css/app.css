@@ -8,6 +8,7 @@
   --dark: rgb(0, 0, 0);
   --mask: rgba(55, 55, 55, .5);;
   --gap: 12px;
+  --row-gap: 10px;
   --slow: .3s;
   --small-gap: 6px;
   --box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, .2);
@@ -38,6 +39,18 @@ a:hover .item-title{
 #ad-block {
   flex: 0 0 auto;
   margin-left: 24px;
+}
+
+.row-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: calc(var(--row-gap) * -1);
+}
+
+.row-item {
+  width: 100%;
+  padding: var(--row-gap);
 }
 
 .ad {
@@ -226,6 +239,7 @@ section {
 
 .image-block {
   position: relative;
+  overflow: hidden;
 }
 
 .image-block img {
@@ -244,6 +258,19 @@ section {
   right: 0;
   z-index: 1;
   background-color: var(--mask);
+}
+
+.image-card {
+  height: 140px;
+}
+
+.image-card .image-block {
+  height: 100%;
+}
+
+.image-card .image-block img {
+  height: 100%;
+  object-fit: cover;
 }
 
 @media only screen and (max-width: 767px) {
@@ -363,5 +390,13 @@ section {
     padding-top: 6px;
     padding-right: 6px;
     writing-mode: vertical-rl;
+  }
+
+  .image-card .image-block{
+    width: 100%;
+  }
+
+  .row-item.is-6 {
+    width: calc(50% - var(--row-gap) * 2);
   }
 }

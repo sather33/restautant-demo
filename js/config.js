@@ -48,8 +48,9 @@ function restaurantWrapper (restaurant) {
 function listThemeConfig (restaurant) {
   const { ID, City, Town, PicURL, Name, HostWords } = restaurant
 
+  cleanRowItems()
   const wrapper = restaurantWrapper(restaurant)
-
+  
   return createElement(wrapper.tag, {
     attrs: {
       id: ID,
@@ -103,18 +104,34 @@ function listThemeConfig (restaurant) {
 function tableThemeConfig (restaurant) {
   const { City, Town, PicURL, Name, HostWords } = restaurant
 
+  cleanRowItems()
+
   return createElement('div', {
     children: ['tableThemeConfig']
   })
 }
 
-function imageThemeConfig (restaurant) {
-  const { City, Town, PicURL, Name, HostWords } = restaurant
+function addRowItems () {
+  const element = getMainDom()
+  element.classList.add('row-items')
+}
 
-  return createElement('div', {
+function cleanRowItems () {
+  const element = getMainDom()
+  element.classList.remove('row-items')
+}
+
+function imageThemeConfig (restaurant) {
+  const { ID, City, Town, PicURL, Name, HostWords } = restaurant
+
+  addRowItems()
+  const wrapper = restaurantWrapper(restaurant)
+
+  return createElement(wrapper.tag, {
     attrs: {
       id: ID,
-      class: 'image-card'
+      class: 'image-card row-item is-6',
+      ...wrapper.attrs
     },
     children: [
       createElement('div', {
