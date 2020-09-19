@@ -1,5 +1,5 @@
 function groupBy (list, type) {
-  return list.reduce((carry, value) => {
+  return list.reduce(function(carry, value) {
     const key = value[type]
 
     if (carry[key]) {

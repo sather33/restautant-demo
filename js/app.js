@@ -100,14 +100,14 @@ function handleCorrectCurrentPage (page) {
 }
 
 function createRestaurantInMain (chunkList) {
-  chunkList[currentPage - 1].map(item => {
+  chunkList[currentPage - 1].map(function(item) {
     const config = createRestaurantConfig(item)
     renderDom(config, 'main')
   })
 }
 
 function createRestaurantInTable (chunkList) {
-  chunkList[currentPage - 1].map(item => {
+  chunkList[currentPage - 1].map(function(item)  {
     const config = createRestaurantConfig(item)
     renderDom(config, 'main-table-tbody')
   })
@@ -119,10 +119,12 @@ function handleTableTemplate () {
 }
 
 function createRestaurantDom (list) {
-  const listWithIndex = list.map((item, index) => ({
-    ...item,
-    Index: `${index + 1}`
-  }))
+  const listWithIndex = list.map(function(item, index) {
+    return {
+      ...item,
+      Index: `${index + 1}`
+    }
+  })
 
   cleanMainDom()
   cleanMainDomClass()
@@ -159,7 +161,9 @@ function selectCityRestaurant (city) {
 function selectDistrictRestaurant (city, district) {
   const restaurantsGroupByCity = getRestaurantsGroupByCity()
   const restaurants = restaurantsGroupByCity[city]
-  const filteredList = restaurants.filter(restaurant => restaurant.Town === district)
+  const filteredList = restaurants.filter(function(restaurant) {
+    return restaurant.Town === district
+  })
   createRestaurantDom(filteredList)
 }
 
@@ -179,7 +183,7 @@ function renderRestaurants () {
 }
 
 function renderOptions (data, id) {
-  data.map(name => {
+  data.map(function(name) {
     const config = createOptionConfig(name)
     renderDom(config, id)
   })

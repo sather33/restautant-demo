@@ -22,13 +22,13 @@ function loadChunkRestaurants () {
 
 function loadCities () {
   const restaurantsGroupByCity = getRestaurantsGroupByCity()
-  const cities = Object.keys(restaurantsGroupByCity).reduce((carray, city) => {
+  const cities = Object.keys(restaurantsGroupByCity).reduce(function(carry, city) {
     const district = restaurantsGroupByCity[city]
     const groupByDistrict = groupBy(district, 'Town')
     const districtNames = Object.keys(groupByDistrict)
 
-    carray[city] = districtNames
-    return carray
+    carry[city] = districtNames
+    return carry
   }, {})
 
   setState('cities', cities)

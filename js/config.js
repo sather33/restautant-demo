@@ -1,7 +1,8 @@
-function tagBlock ({ City, Town }, className = '') {
+function tagBlock ({ City, Town }, className) {
+  const name = className || ''
   return createElement('div', {
     attrs: {
-      class: 'tag-block ' + className
+      class: 'tag-block ' + name
     },
     children: [
       createElement('div', {
@@ -102,7 +103,7 @@ function listThemeConfig (restaurant) {
 }
 
 function tdChildren (restaurant) {
-  return tableList.map((item) => {
+  return tableList.map(function(item) {
     const value = restaurant[item.value]
 
     return createElement('td', {
@@ -258,7 +259,7 @@ const tableList = [
 ]
 
 function thChildren () {
-  return tableList.map(item => {
+  return tableList.map(function(item) {
     return createElement('th', {
       children: [
         createElement('p', {
