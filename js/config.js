@@ -20,13 +20,41 @@ function tagBlock (className, { City, Town }) {
   })
 }
 
-function createRestaurantConfig (restaurant) {
-  const { ID, PicURL, Name, HostWords, City, Town } = restaurant
+const restaurantThemes = {
+  list: listThemeConfig,
+  table: tableThemeConfig,
+  image: imageThemeConfig,
+}
 
-  return createElement('div', {
+function restaurantWrapper (restaurant) {
+  const { Url } = restaurant
+
+  if (Url) {
+    return {
+      tag: 'a',
+      attrs: {
+        href: Url,
+        target: '_blank'
+      }
+    }
+  }
+
+  return {
+    tag: 'div',
+    attrs: {}
+  }
+}
+
+function listThemeConfig (restaurant) {
+  const { ID, City, Town, PicURL, Name, HostWords } = restaurant
+
+  const wrapper = restaurantWrapper(restaurant)
+
+  return createElement(wrapper.tag, {
     attrs: {
       id: ID,
-      class: 'card'
+      class: 'card',
+      ...wrapper.attrs
     },
     children: [
       tagBlock('is-desktop-only', { City, Town }),
@@ -41,6 +69,11 @@ function createRestaurantConfig (restaurant) {
               class: 'image',
             },
           }),
+          createElement('div', {
+            attrs: {
+              class: 'mask',
+            },
+          }),
         ]
       }),
       createElement('div', {
@@ -50,14 +83,14 @@ function createRestaurantConfig (restaurant) {
         children: [
           createElement('div', {
             attrs: {
-              class: 'item-title'
+              class: 'item-title f-text'
             },
             children: [Name]
           }),
           tagBlock('is-touch-only', { City, Town }),
           createElement('div', {
             attrs: {
-              class: 'item-content'
+              class: 'item-content f-text'
             },
             children: [HostWords]
           }),
@@ -65,6 +98,49 @@ function createRestaurantConfig (restaurant) {
       })
     ],
   })
+}
+
+function tableThemeConfig (restaurant) {
+  const { City, Town, PicURL, Name, HostWords } = restaurant
+
+  return createElement('div', {
+    children: ['tableThemeConfig']
+  })
+}
+
+function imageThemeConfig (restaurant) {
+  const { City, Town, PicURL, Name, HostWords } = restaurant
+
+  return createElement('div', {
+    attrs: {
+      id: ID,
+      class: 'image-card'
+    },
+    children: [
+      createElement('div', {
+        attrs: {
+          class: 'image-block'
+        },
+        children: [
+          createElement('img', {
+            attrs: {
+              src: PicURL,
+              class: 'image',
+            },
+          }),
+          createElement('div', {
+            attrs: {
+              class: 'mask',
+            },
+          }),
+        ]
+      }),
+    ]
+  })
+}
+
+function createRestaurantConfig (restaurant) {
+  return restaurantThemes[theme](restaurant)
 }
 
 function createOptionConfig (name) {

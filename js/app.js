@@ -17,7 +17,9 @@ function initState () {
   loadCities()
   
   const data = getRestaurant();
-  console.log('initState', data)
+  data.map(item => {
+    console.log('item', item)
+  })
 }
 
 var themeDoms = {
@@ -206,12 +208,6 @@ function updateTheme (value) {
 
 function switchTheme (value) {
   updateTheme(value)
-
-  const element = getMainDom()
-  element.classList.remove('is-theme-table')
-  element.classList.remove('is-theme-image')
-  element.classList.remove('is-theme-list')
-  element.classList.add('is-theme-' + value)
-
   checkTheme()
+  renderRestaurants()
 }
