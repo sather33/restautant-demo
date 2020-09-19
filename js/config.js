@@ -107,6 +107,9 @@ function tdChildren (restaurant) {
     const value = restaurant[item.value]
 
     return createElement('td', {
+      attrs: {
+        class: item.class || ''
+      },
       children: [value]
     })
   })
@@ -224,13 +227,17 @@ const tableList = [
   },
   {
     label: '地址',
-    value: 'Address'
+    value: 'Address',
+    class: 'content'
   },
 ]
 
 function thChildren () {
   return tableList.map(item => {
     return createElement('th', {
+      attrs: {
+        class: item.class || ''
+      },
       children: [item.label]
     })
   })

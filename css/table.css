@@ -26,7 +26,20 @@ tbody tr:hover td {
   background-color: var(--blue-grey);
 }
 
-.is-scroll {
-  max-width: 90vw;
-  overflow-x: scroll;
+@media only screen and (max-width: 767px) {
+  .is-scroll {
+    max-width: 90vw;
+    overflow-x: scroll;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .content {
+    white-space: normal;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
