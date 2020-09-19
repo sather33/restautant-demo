@@ -4,9 +4,9 @@ function renderElem (element) {
   const children = element.children
   const elem = document.createElement(tagName);
   if (attrs) {
-    for (const [k, v] of Object.entries(attrs)) {
-      elem.setAttribute(k, v);
-    }
+    Object.keys(attrs).map(key => {
+      elem.setAttribute(key, attrs[key]);
+    })
   }
 
   if (children) {

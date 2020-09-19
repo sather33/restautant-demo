@@ -120,10 +120,8 @@ function handleTableTemplate () {
 
 function createRestaurantDom (list) {
   const listWithIndex = list.map(function(item, index) {
-    return {
-      ...item,
-      Index: `${index + 1}`
-    }
+    item.Index = `${index + 1}`
+    return item
   })
 
   cleanMainDom()

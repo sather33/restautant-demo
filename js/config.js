@@ -28,13 +28,13 @@ const restaurantThemes = {
 }
 
 function restaurantWrapper (restaurant) {
-  const { Url } = restaurant
+  const url = restaurant.Url
 
-  if (Url) {
+  if (url) {
     return {
       tag: 'a',
       attrs: {
-        href: Url,
+        href: url,
         target: '_blank'
       }
     }

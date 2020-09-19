@@ -4,7 +4,7 @@ function createElement (tagName, item) {
   const children = item.children
   
   Object.assign(vElement, {
-    tagName,
+    tagName: tagName,
     attrs: attrs || {},
     children: children || [],
   });
