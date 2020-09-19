@@ -3,7 +3,6 @@ function setState (key, data) {
 }
 
 function loadDataToStorage() {
-  console.log('load data')
   setState('restaurants', data)
 }
 

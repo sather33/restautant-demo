@@ -102,7 +102,6 @@ function listThemeConfig (restaurant) {
 }
 
 function tdChildren (restaurant) {
-  console.log('restaurant', restaurant)
   return tableList.map((item) => {
     const value = restaurant[item.value]
 

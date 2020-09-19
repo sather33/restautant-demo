@@ -2,7 +2,6 @@ var currentPage = 1
 var theme = 'list'
 
 window.onload = async function() {
-  console.log("window loaded")
   await initState();
   await renderCityOptions()
   await renderRestaurants()
@@ -15,11 +14,6 @@ function initState () {
   loadDataGroupByCity()
   loadChunkRestaurants()
   loadCities()
-  
-  const data = getRestaurant();
-  data.map(item => {
-    console.log('item', item)
-  })
 }
 
 var themeDoms = {
