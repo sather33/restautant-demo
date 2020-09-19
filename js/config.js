@@ -261,10 +261,14 @@ const tableList = [
 function thChildren () {
   return tableList.map(item => {
     return createElement('th', {
-      attrs: {
-        class: item.class || ''
-      },
-      children: [item.label]
+      children: [
+        createElement('p', {
+          attrs: {
+            class: item.class || ''
+          },
+          children: [item.label]
+        })
+      ]
     })
   })
 }
