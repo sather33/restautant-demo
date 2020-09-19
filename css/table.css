@@ -1,0 +1,32 @@
+th, td {
+  transition: all var(--slow);
+  white-space: nowrap;
+  height: 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--grey-light);
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background: linear-gradient(90deg, rgba(231, 231, 231, 1)35%, rgba(241, 241, 241, 1)60%);
+  background: -moz-linear-gradient(90deg, rgba(231, 231, 231, 1)35%, rgba(241, 241, 241, 1)60%);
+  background: -webkit-linear-gradient(90deg, rgba(231, 231, 231, 1)35%, rgba(241, 241, 241, 1)60%);
+  background: -o-linear-gradient(90deg, rgba(231, 231, 231, 1)35%, rgba(241, 241, 241, 1)60%);
+}
+
+tbody tr:nth-child(even) td {
+  background-color: var(--grey-lightest);
+}
+
+tbody tr:hover td {
+  background-color: var(--blue-grey);
+}
+
+.is-scroll {
+  max-width: 90vw;
+  overflow-x: scroll;
+}

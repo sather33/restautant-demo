@@ -64,6 +64,16 @@ function cleanMainDom () {
   cleanChildren(getMainDom())
 }
 
+function cleanMainDomClass () {
+  const element = getMainDom()
+  element.className = ''
+}
+
+function addScrollToMain () {
+  const element = getMainDom()
+  element.classList.add('is-scroll')
+}
+
 async function renderPagination (page) {
   const element = getPaginationDom()
   cleanChildren(element)
@@ -121,6 +131,7 @@ function createRestaurantDom (list) {
   }))
 
   cleanMainDom()
+  cleanMainDomClass()
 
   const chunkList = chunk(listWithIndex, 10)
   const totalPage = chunkList.length
@@ -131,6 +142,7 @@ function createRestaurantDom (list) {
   renderPagination(totalPage);
 
   if (theme === 'table') {
+    addScrollToMain()
     handleTableTemplate()
     createRestaurantInTable(chunkList)
     return
