@@ -26,7 +26,7 @@ a {
   text-decoration: none;
 }
 
-a:hover .item-title{
+.card:hover .item-title {
   color: var(--primary);
 }
 

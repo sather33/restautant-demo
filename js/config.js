@@ -108,9 +108,17 @@ function tdChildren (restaurant) {
 
     return createElement('td', {
       attrs: {
-        class: item.class || ''
+        class: item.class ? item.class + '-td' : '',
+        'data-content': value
       },
-      children: [value]
+      children: [
+        createElement('p', {
+          attrs: {
+            class: item.class || ''
+          },
+          children: [value]
+        })
+      ]
     })
   })
 }

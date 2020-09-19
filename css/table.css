@@ -35,6 +35,7 @@ tbody tr:hover td {
 
 @media only screen and (min-width: 768px) {
   .content {
+    position: relative;
     white-space: normal;
     display: -webkit-box;
     text-overflow: ellipsis;
@@ -42,4 +43,31 @@ tbody tr:hover td {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .content-td {
+    position: relative;
+  }
+
+  .content-td::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--slow), visibility var(--slow);
+  }
+
+  .content-td:hover::before {
+    content: attr(data-content);
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    padding: 4px;
+    border-radius: 3px;
+    border: 1px solid var(--grey);
+    background: var(--white);
+    color: var(--dark);
+    font-size: 14px;
+    white-space: nowrap;
+    transform: translateY(50%) translateX(20px);
+    opacity: 1;
+    visibility: visible;
+}
 }
