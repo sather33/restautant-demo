@@ -1,4 +1,7 @@
-function renderElem ({ tagName, attrs, children }) {
+function renderElem (element) {
+  const tagName = element.tagName
+  const attrs = element.attrs
+  const children = element.children
   const elem = document.createElement(tagName);
   if (attrs) {
     for (const [k, v] of Object.entries(attrs)) {

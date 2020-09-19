@@ -1,4 +1,4 @@
-function tagBlock ({ City, Town }, className) {
+function tagBlock (data, className) {
   const name = className || ''
   return createElement('div', {
     attrs: {
@@ -9,13 +9,13 @@ function tagBlock ({ City, Town }, className) {
         attrs: {
           class: 'city-tag f-text'
         },
-        children: [City]
+        children: [data.City]
       }),
       createElement('div', {
         attrs: {
           class: 'town-tag f-text'
         },
-        children: [Town]
+        children: [data.Town]
       })
     ]
   })
@@ -47,8 +47,6 @@ function restaurantWrapper (restaurant) {
 }
 
 function listThemeConfig (restaurant) {
-  const { ID, City, Town, PicURL, Name, HostWords } = restaurant
-
   cleanRowItems()
   const wrapper = restaurantWrapper(restaurant)
   
@@ -59,7 +57,7 @@ function listThemeConfig (restaurant) {
       ...wrapper.attrs
     },
     children: [
-      tagBlock({ City, Town }, 'is-desktop-only'),
+      tagBlock(restaurant, 'is-desktop-only'),
       createElement('div', {
         attrs: {
           class: 'image-block'
@@ -67,7 +65,7 @@ function listThemeConfig (restaurant) {
         children: [
           createElement('img', {
             attrs: {
-              src: PicURL,
+              src: restaurant.PicURL,
               class: 'image',
             },
           }),
@@ -87,14 +85,14 @@ function listThemeConfig (restaurant) {
             attrs: {
               class: 'item-title f-text'
             },
-            children: [Name]
+            children: [restaurant.Name]
           }),
-          tagBlock({ City, Town }, 'is-touch-only'),
+          tagBlock(restaurant, 'is-touch-only'),
           createElement('div', {
             attrs: {
               class: 'item-content f-text'
             },
-            children: [HostWords]
+            children: [restaurant.HostWords]
           }),
         ]
       })
@@ -132,8 +130,6 @@ function tableThemeConfig (restaurant) {
 }
 
 function imageThemeConfig (restaurant) {
-  const { ID, City, Town, PicURL, Name, HostWords } = restaurant
-
   addRowItems()
   const wrapper = restaurantWrapper(restaurant)
 
@@ -149,12 +145,12 @@ function imageThemeConfig (restaurant) {
           class: 'info-block'
         },
         children: [
-          tagBlock({ City, Town }),
+          tagBlock(restaurant),
           createElement('div', {
             attrs: {
               class: 'item-title f-text'
             },
-            children: [Name]
+            children: [restaurant.Name]
           }),
           createElement('div', {
             attrs: {
@@ -170,7 +166,7 @@ function imageThemeConfig (restaurant) {
                 attrs: {
                   class: 'item-content f-text'
                 },
-                children: [HostWords]
+                children: [restaurant.HostWords]
               }),
             ]
           })
@@ -183,7 +179,7 @@ function imageThemeConfig (restaurant) {
         children: [
           createElement('img', {
             attrs: {
-              src: PicURL,
+              src: restaurant.PicURL,
               class: 'image',
             },
           }),

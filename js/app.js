@@ -203,7 +203,8 @@ function renderDistrictOptions (district) {
   renderOptions(district, 'district-select')
 }
 
-function handleSelectCity ({ value }) {
+function handleSelectCity (data) {
+  const value = data.value
   const cities = getCities()
   const district = cities[value]
 
@@ -217,7 +218,7 @@ function handleSelectCity ({ value }) {
   renderRestaurants()
 }
 
-function handleSelectDistrict ({ value }) {
+function handleSelectDistrict () {
   renderRestaurants()
 }
 
@@ -232,7 +233,7 @@ function listenPagination () {
 
   for (let index = 0; index < elements.length; index++) {
     const element = elements[index];
-    const { page } = element.dataset
+    const page = element.dataset.page
     element.addEventListener('click', function () {
       changePage(parseInt(page, 10))
     })
