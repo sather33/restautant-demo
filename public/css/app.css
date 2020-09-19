@@ -247,9 +247,15 @@ section {
   display: flex;
   overflow: hidden;
   cursor: pointer;
+  height: 180px;
+}
+
+.switch-label {
+  white-space: nowrap;
 }
 
 .image-block img {
+  object-fit: cover;
   transition: all var(--slow);
 }
 
