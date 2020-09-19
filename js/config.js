@@ -221,7 +221,7 @@ function createPaginationConfig (page) {
       class: className,
       'data-page': page
     },
-    children: [`${page}`]
+    children: [toString(page)]
   })
 }
 

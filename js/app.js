@@ -120,7 +120,7 @@ function handleTableTemplate () {
 
 function createRestaurantDom (list) {
   const listWithIndex = list.map(function(item, index) {
-    item.Index = `${index + 1}`
+    item.Index = toString(index + 1)
     return item
   })
 
