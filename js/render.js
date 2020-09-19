@@ -4,7 +4,7 @@ function renderElem (element) {
   const children = element.children
   const elem = document.createElement(tagName);
   if (attrs) {
-    Object.keys(attrs).map(key => {
+    Object.keys(attrs).map(function(key)  {
       elem.setAttribute(key, attrs[key]);
     })
   }

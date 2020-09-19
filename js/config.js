@@ -49,13 +49,15 @@ function restaurantWrapper (restaurant) {
 function listThemeConfig (restaurant) {
   cleanRowItems()
   const wrapper = restaurantWrapper(restaurant)
+
+  const defaultAttrs = {
+    id: restaurant.ID,
+    class: 'card',
+  }
+  const attrs = Object.assign(defaultAttrs, restaurant.attrs)
   
   return createElement(wrapper.tag, {
-    attrs: {
-      id: restaurant.ID,
-      class: 'card',
-      ...wrapper.attrs
-    },
+    attrs: attrs,
     children: [
       tagBlock(restaurant, 'is-desktop-only'),
       createElement('div', {
@@ -133,12 +135,15 @@ function imageThemeConfig (restaurant) {
   addRowItems()
   const wrapper = restaurantWrapper(restaurant)
 
+  const defaultAttrs = {
+    id: restaurant.ID,
+    class: 'image-card row-item is-6',
+  }
+
+  const attrs = Object.assign(defaultAttrs, restaurant.attrs)
+
   return createElement(wrapper.tag, {
-    attrs: {
-      id: restaurant.ID,
-      class: 'image-card row-item is-6',
-      ...wrapper.attrs
-    },
+    attrs: attrs,
     children: [
       createElement('div', {
         attrs: {
