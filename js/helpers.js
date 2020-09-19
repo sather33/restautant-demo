@@ -32,5 +32,5 @@ function getParameterByName(name, url) {
 }
 
 function toString (number) {
-  return "'"+number+"'"
+  return "" + number
 }
