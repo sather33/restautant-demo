@@ -26,7 +26,7 @@ a {
   text-decoration: none;
 }
 
-.card:hover .item-title {
+a:hover .item-title {
   color: var(--primary);
 }
 
@@ -254,7 +254,12 @@ section {
   transform: scale(1.3);
 }
 
+.image-block:hover .mask {
+  opacity: 0;
+}
+
 .mask {
+  transition: opacity var(--slow);
   position: absolute;
   top: 0;
   bottom: 0;
