@@ -101,13 +101,22 @@ function listThemeConfig (restaurant) {
   })
 }
 
-function tableThemeConfig (restaurant) {
-  const { City, Town, PicURL, Name, HostWords } = restaurant
+function tdChildren (restaurant) {
+  console.log('restaurant', restaurant)
+  return tableList.map((item) => {
+    const value = restaurant[item.value]
 
+    return createElement('td', {
+      children: [value]
+    })
+  })
+}
+
+function tableThemeConfig (restaurant) {
   cleanRowItems()
 
-  return createElement('div', {
-    children: ['tableThemeConfig']
+  return createElement('tr', {
+    children: tdChildren(restaurant)
   })
 }
 
@@ -194,4 +203,60 @@ function addRowItems () {
 function cleanRowItems () {
   const element = getMainDom()
   element.classList.remove('row-items')
+}
+
+const tableList = [
+  {
+    label: '編號',
+    value: 'Index'
+  },
+  {
+    label: '行政區域',
+    value: 'City'
+  },
+  {
+    label: '鄉政區',
+    value: 'Town'
+  },
+  {
+    label: '商家',
+    value: 'Name'
+  },
+  {
+    label: '地址',
+    value: 'Address'
+  },
+]
+
+function thChildren () {
+  return tableList.map(item => {
+    return createElement('th', {
+      children: [item.label]
+    })
+  })
+}
+
+function createTableTemplate () {
+  return createElement('table', {
+    attrs: {
+      id: 'main-table'
+    },
+    children: [
+      createElement('thead', {
+        attrs: {
+          id: 'main-table-thead'
+        },
+        children: [
+          createElement('tr', {
+            children: thChildren()
+          })
+        ]
+      }),
+      createElement('tbody', {
+        attrs: {
+          id: 'main-table-tbody'
+        },
+      })
+    ]
+  })
 }

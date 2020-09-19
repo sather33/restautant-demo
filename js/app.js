@@ -95,10 +95,34 @@ function handleCorrectCurrentPage (page) {
   return page
 }
 
+function createRestaurantInMain (chunkList) {
+  chunkList[currentPage - 1].map(item => {
+    const config = createRestaurantConfig(item)
+    renderDom(config, 'main')
+  })
+}
+
+function createRestaurantInTable (chunkList) {
+  chunkList[currentPage - 1].map(item => {
+    const config = createRestaurantConfig(item)
+    renderDom(config, 'main-table-tbody')
+  })
+}
+
+function handleTableTemplate () {
+  const config = createTableTemplate()
+  renderDom(config, 'main')
+}
+
 function createRestaurantDom (list) {
+  const listWithIndex = list.map((item, index) => ({
+    ...item,
+    Index: `${index + 1}`
+  }))
+
   cleanMainDom()
 
-  const chunkList = chunk(list, 10)
+  const chunkList = chunk(listWithIndex, 10)
   const totalPage = chunkList.length
 
   handleCorrectCurrentPage(totalPage)
@@ -106,10 +130,13 @@ function createRestaurantDom (list) {
   updateTotalPage(totalPage)
   renderPagination(totalPage);
 
-  chunkList[currentPage - 1].map(item => {
-    const config = createRestaurantConfig(item)
-    renderDom(config, 'main')
-  })
+  if (theme === 'table') {
+    handleTableTemplate()
+    createRestaurantInTable(chunkList)
+    return
+  }
+
+  createRestaurantInMain(chunkList)
 }
 
 function initRestaurant () {
