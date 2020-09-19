@@ -156,6 +156,24 @@ function imageThemeConfig (restaurant) {
             },
             children: [Name]
           }),
+          createElement('div', {
+            attrs: {
+              class: 'hide-content'
+            },
+            children: [
+              createElement('div', {
+                attrs: {
+                  class: 'line'
+                }
+              }),
+              createElement('div', {
+                attrs: {
+                  class: 'item-content f-text'
+                },
+                children: [HostWords]
+              }),
+            ]
+          })
         ]
       }),
       createElement('div', {
